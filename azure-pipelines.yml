@@ -17,20 +17,24 @@ steps:
 
 - script: |
     npm install
-  displayName: 'npm install'
-  workingDirectory: photo-library
+  displayName: 'UI: npm install'
+  workingDirectory: photo-library-ui
 
 - script: |
     npm run build
-  displayName: 'npm build'
+  displayName: 'UI: npm build'
+  workingDirectory: photo-library-ui
+
+- script: |
+    npm install
+  displayName: 'npm install'
   workingDirectory: photo-library
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
+    sourceFolder: '$(Build.SourcesDirectory)/photo-library'
     contents: |
-        photo-library/*
-        photo-library-ui/*
+        */*        
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy project files'
 
