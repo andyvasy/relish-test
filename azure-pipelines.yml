@@ -12,10 +12,10 @@ variables:
   azureSubscription: 'b3c420ab-1cdb-4858-a879-b908106d210d'
 
   # Web app name
-  webAppName: 'relish-test-231103'
+  webAppName: 'relish-test-1103-02'
 
   # Environment name
-  environmentName: 'relish-test-231103'
+  environmentName: 'relish-test-1103-02'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -32,7 +32,7 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: '16.x'
+        versionSpec: '18.x'
       displayName: 'Install Node.js'
 
     - script: |
@@ -81,6 +81,6 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              runtimeStack: 'NODE|16.16'
+              runtimeStack: 'NODE|18.12'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
