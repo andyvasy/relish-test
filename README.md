@@ -4,16 +4,20 @@
 
 Software Developer Technical Test
 
+- Node
+- Express
+- React
+
 Highlights:
 
-- Data enrichment
-- Filtering
-- Pagination
-- Caching
-- Sales pitch generation using OpenAI API
-- Azure build pipeline
+- [x] Data enrichment
+- [x] Filtering
+- [x] Pagination
+- [x] Caching
+- [x] Sales pitch generation using OpenAI API
+- [x] Azure build pipeline
 
-Given a limited timeframe there are some trade offs, see [Side Note](#sidenote) section
+There are trade-offs given a limited timeframe, see [Side Note](#side-note) section.
 
 ## Usage
 
@@ -88,6 +92,24 @@ Sample output of /externalapi/photos?offset=5&limit=1:
 }
 ```
 
+### /externalapi/photos/{id}
+
+Returns an array of exactly one photo object in the same format or 404.
+
+Search query string parameters are ignored
+
+### /externalapi/ai/photo-pitch/{id}
+
+Generates a sales pitch using Photo, Album, and User data.
+
+Returns a plain-text string.
+
+Using gpt-4 model, titles get translated from Latin to English and being used as a source of sales pitch phrase along with User name, Company name, City, and Catchphrase.
+
+Since images have nothing to categorize, image categorization would be boring to implement. Text is much more fun having not very meaningful input data, for example:
+
+_Discover Leanne Graham's masterpiece artwork, "It is reprehensible to leave cowardice", a shining jewel in her innovative album, "Indeed, the Nuisance Exists." This cutting-edge art piece from Gwenborough blends sophisticated multi-layered neural-net illustrations with profound traces of the undefined. It is fascinating how Graham has captured the undefinable essence within each layer, challenging and bewitching the visual senses. Romaguera-Crona is proud to provide this high-profile art piece. Here's your golden opportunity to own Graham's genius. Embrace the nuance, live the courage it demands, and let "It is reprehensible to leave cowardice" be the centerpiece of your collection._
+
 ## Build & Run
 
 ### Requirements:
@@ -150,7 +172,7 @@ npm run build
 
 That will copy built artifacts into API Gateway `static` folder so Express could serve them
 
-## Side note {#sidenote}
+## Side note
 
 Due to time constraints here are some thoughts and concerns.
 
@@ -176,3 +198,7 @@ and so on...
 ### Documentation
 
 It would be great to have OpenAPI / Swagger document or at least Postman or Insomnia request collection
+
+### Client error handling
+
+The client does not display HTTP errors
