@@ -16,6 +16,10 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd photo-library
+  displayName: 'cd photo-library'
+
+- script: |
     npm install
   displayName: 'npm install'
 
