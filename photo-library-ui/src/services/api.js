@@ -29,7 +29,7 @@ const fetchData = async (query) => {
 
 const getCreative = async (imageId) => {
   var url = ""; // TODO: externalize
-  var query = `${url}/externalapi/ai/image-pitch/${imageId}`;
+  var query = `${url}/externalapi/ai/photo-pitch/${imageId}`;
   try {
     const response = await fetch(query, {
       headers: { Accept: "application/json" },
