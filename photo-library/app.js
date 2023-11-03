@@ -10,7 +10,7 @@ const aiRouter = require("./routes/ai");
 const app = express();
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../photo-library-ui/dist")));
+app.use(express.static(path.join(__dirname, "/static")));
 app.use("/externalapi/photos", photosRouter);
 app.use("/externalapi/ai", aiRouter);
 app.use(handleHttpErrors);
