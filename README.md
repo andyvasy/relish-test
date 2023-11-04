@@ -19,7 +19,13 @@ Highlights:
 
 There are trade-offs given a limited timeframe, see [Side Note](#side-note) section.
 
-## Usage
+## Client
+
+Provided React.js client consists of a single page with a form where all query parameters [listed here](#externalapiphotos) can be set.
+
+To generate a sales pitch for a photo, press "Get Creative!" button
+
+## API
 
 API Gateway supports three endpoints:
 
