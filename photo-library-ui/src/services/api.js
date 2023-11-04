@@ -1,6 +1,5 @@
 const fetchData = async (query) => {
-  var url = ""; // TODO: externalize
-  var queryUrl = `${url}/externalapi/photos`;
+  var queryUrl = `/externalapi/photos`;
   if (query.imageId) queryUrl += `/${query.imageId}`;
   else if (
     query.imageTitle ||
@@ -28,8 +27,7 @@ const fetchData = async (query) => {
 };
 
 const getCreative = async (imageId) => {
-  var url = ""; // TODO: externalize
-  var query = `${url}/externalapi/ai/photo-pitch/${imageId}`;
+  var query = `/externalapi/ai/photo-pitch/${imageId}`;
   try {
     const response = await fetch(query, {
       headers: { Accept: "application/json" },
