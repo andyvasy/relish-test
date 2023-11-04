@@ -30,7 +30,7 @@ function QueryForm() {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="imageId">
-          <Form.Label>Image ID</Form.Label>
+          <Form.Label>Photo ID</Form.Label>
           <Form.Control
             type="number"
             value={values.imageId}
@@ -39,7 +39,7 @@ function QueryForm() {
         </Form.Group>
 
         <Form.Group controlId="imageTitle">
-          <Form.Label>Image Title</Form.Label>
+          <Form.Label>Photo Title</Form.Label>
           <Form.Control
             type="text"
             value={values.imageTitle}
