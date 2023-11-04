@@ -27,6 +27,8 @@ API Gateway supports three endpoints:
 - /externalapi/photos/{id}
 - /externalapi/ai/photo-pitch/{id}
 
+External data is being cached in memory respecting `max-age`. If the external server does not provide `cache-control` header, a default configurable TTL will be used
+
 ### /externalapi/photos
 
 Returns a paginated list of enriched photoes.
@@ -34,9 +36,9 @@ Returns a paginated list of enriched photoes.
 Supported query string parameters:
 | Parameter | Description |
 | --------- | ----------- |
-| title | filter by a fragment of Photo title |
-| album.title | filter by a fragment of Album title |
-| album.user.email | Exact mathch of a User's email |
+| title | filter by a fragment of a Photo title |
+| album.title | filter by a fragment of an Album title |
+| album.user.email | Exact match of a User's email |
 | offset | Pagination offset |
 | limit | The number of records returned |
 
@@ -94,7 +96,7 @@ Sample output of /externalapi/photos?offset=5&limit=1:
 
 ### /externalapi/photos/{id}
 
-Returns an array of exactly one photo object in the same format or 404.
+Returns an array of exactly one photo object in the same format, or 404 Not Found.
 
 Search query string parameters are ignored
 
@@ -147,6 +149,8 @@ This will start API Gateway on port 3000
 | API_BASE_URL         | HTTP port      | default: https://jsonplaceholder.typicode.com |
 | DEFAULT_OFFSET       | HTTP port      | default: 0                                    |
 | DEFAULT_LIMIT        | HTTP port      | default: 25                                   |
+| DEFAULT_CACHE_TTL    | HTTP port      | default: 60 (seconds)                         |
+| CACHE_CHECK_PERIOD   | HTTP port      | default: 30 (seconds)                         |
 
 Configuration can be provided using `.env` file as well.
 
@@ -187,7 +191,7 @@ Output JSON format is not exactly what was asked for, and there are two reasons 
 
 This solution is far from being ideal because it uses in-memory cache (better than no cache) and in-memory filtering. That is perfectly fine for the amounts of data we deal with but is not scalable.
 
-Ideally, expecting a big number of records, if we would use a local copy of the external data and some sort document database with full-text search capabilities like ElasticSearch or MongoDB. But that raises even more concerns:
+Ideally, expecting a big number of records, we would use a local copy of the external data stored in some sort of a document database with full-text search capabilities like ElasticSearch or MongoDB. But that raises even more concerns:
 
 - how stale records get purged and refreshed?
 - how new records get ingested?

@@ -2,12 +2,12 @@ const axios = require("axios");
 const NodeCache = require("node-cache");
 const { parse } = require("cache-control-parser");
 
-const DEFAULT_CACHE_TTL = 60; // seconds; TODO: move to config
-const DEFAULT_CACHE_CHECK_PERIOD = 30; // seconds; TODO: move to config
+const DEFAULT_CACHE_TTL = process.env.API_BASE_URL || 60; // seconds
+const CACHE_CHECK_PERIOD = process.env.API_BASE_URL || 30; // seconds
 const BASE_URL =
   process.env.API_BASE_URL || "https://jsonplaceholder.typicode.com";
 
-const cache = new NodeCache({ checkperiod: DEFAULT_CACHE_CHECK_PERIOD });
+const cache = new NodeCache({ checkperiod: CACHE_CHECK_PERIOD });
 
 const fetchPhoto = async (id) => {
   return await fetchData(`${BASE_URL}/photos/${id}`);
