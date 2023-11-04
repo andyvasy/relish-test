@@ -1,3 +1,6 @@
+/**
+ *  Middleware to gracefully handle HTTP errors
+ */
 const handleHttpErrors = async (error, req, res, next) => {
   if (error.response && error.response.status) {
     res.status(error.response.status).send(error.response.statusText);

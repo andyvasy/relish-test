@@ -3,7 +3,11 @@ const { getPitch } = require("../src/openAiService");
 const router = express.Router();
 
 router.get("/photo-pitch/:id", async function (req, res, next) {
-  res.json({ text: await getPitch(req.params.id) });
+  try {
+    res.json({ text: await getPitch(req.params.id) });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
