@@ -2,13 +2,9 @@
 
 ## Overwiew
 
-Software Developer Technical Test
+### Software Developer Technical Test
 
-- Node
-- Express
-- React
-
-Highlights:
+### Highlights:
 
 - [x] Data enrichment
 - [x] Filtering
@@ -18,13 +14,19 @@ Highlights:
 - [x] Azure build pipeline
 - [x] Jest unit tests for BL class
 
+### Stack:
+
+- Node
+- Express
+- React
+
 There are trade-offs given a limited timeframe, see [Side Note](#side-note) section.
 
 ## Client
 
-Provided React.js client consists of a single page with a form where all query parameters [listed here](#externalapiphotos) can be set.
+Provided React.js client consists of a single page with a form where all [required query parameters](#externalapiphotos) can be set. **"Query"** button runs the query and resulting JSON(s) will be displayed below the form.
 
-To generate a sales pitch for a photo, press "Get Creative!" button
+To make an AI to generate a salling pitch for a given photo, press **"Get Creative!"** button
 
 ## API
 
@@ -47,7 +49,7 @@ Supported query string parameters:
 | album.title | filter by a fragment of an Album title |
 | album.user.email | Exact match of a User's email |
 | offset | Pagination offset |
-| limit | The number of records returned |
+| limit | The number of records to be returned |
 
 Notes:
 
@@ -109,9 +111,9 @@ Search query string parameters are ignored
 
 ### /externalapi/ai/photo-pitch/{id}
 
-Generates a salling pitch using Photo, Album, and User data.
+Generates a selling pitch using Photo, Album, and User data.
 
-Returns a simple json containing a selling pitch:
+Returns a simple JSON response containing a selling pitch:
 
 ```json
 {
@@ -119,9 +121,9 @@ Returns a simple json containing a selling pitch:
 }
 ```
 
-Using gpt-4 model, titles get translated from Latin to English and being used as a source of sales pitch phrase along with User name, Company name, City, and Catchphrase.
+Using OpenAI gpt-4 model, titles get translated from Latin to English and being used as a source of sales pitch phrase along with User name, Company name, City, and Catchphrase.
 
-Since images have nothing to categorize, image categorization would be boring to implement. Text is much more fun, having not very meaningful input data, for example:
+Since actual images have not much to categorize, image categorization would be boring to implement. Text is much more fun, having not very meaningful input data, for example:
 
 _Discover Leanne Graham's masterpiece artwork, "It is reprehensible to leave cowardice", a shining jewel in her innovative album, "Indeed, the Nuisance Exists." This cutting-edge art piece from Gwenborough blends sophisticated multi-layered neural-net illustrations with profound traces of the undefined. It is fascinating how Graham has captured the undefinable essence within each layer, challenging and bewitching the visual senses. Romaguera-Crona is proud to provide this high-profile art piece. Here's your golden opportunity to own Graham's genius. Embrace the nuance, live the courage it demands, and let "It is reprehensible to leave cowardice" be the centerpiece of your collection._
 
