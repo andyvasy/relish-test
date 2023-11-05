@@ -26,7 +26,7 @@ router.get("/", async function (req, res, next) {
     const title = req.query.title;
     const albumTitle = req.query["album.title"];
     const email = req.query["album.user.email"];
-    const photos = await getPhotos(title, albumTitle, email);
+    const photos = await getPhotos({ title, albumTitle, email });
     // paginate
     const offset = Math.min(
       parseInt(req.query.offset || DEFAULT_OFFSET),

@@ -1,3 +1,8 @@
+/*
+Provides a set of functions to query the external service API
+Responses are cached in memory respecting Cache-Control max-age HTTP header
+*/
+
 const axios = require("axios");
 const NodeCache = require("node-cache");
 const { parse } = require("cache-control-parser");
@@ -45,6 +50,14 @@ const getMaxAge = (response) => {
   return DEFAULT_CACHE_TTL;
 };
 
+/**
+ * Fetch data from the given URL.
+ * Caches the response in memory.
+ * If the response is a list, also caches each item in the list separately.
+ * If Cache-Control response heaeder is set, TTL is defined by maxAge;
+ * If not set, TTL is defined by DEFAULT_CACHE_TTL.
+ * @param url - URL to fetch
+ */
 const fetchData = async (url) => {
   // cleanup trailing slash
   url = url.replace(/\/$/, "");

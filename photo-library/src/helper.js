@@ -1,4 +1,6 @@
-// Helper functions
+/*
+ Helper functions to supprt filtering
+*/
 
 const listToMap = (list) => {
   const map = new Map();

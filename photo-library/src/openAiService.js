@@ -1,7 +1,15 @@
+/*
+OpenAI Gateway
+*/
 const OpenAI = require("openai");
 const openai = new OpenAI();
 const { getPhoto } = require("../src/photoService");
 
+/**
+ * Generates a selling pitch for a photo.
+ * @param photoId
+ * @returns selling pitch as a plain text
+ */
 const getPitch = async (photoId) => {
   const photo = await getPhoto(photoId);
 

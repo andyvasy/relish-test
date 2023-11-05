@@ -9,7 +9,11 @@ const {
 
 const { listToMap, likeFilter, strictFilter } = require("./helper");
 
-/** Get a single photo by id */
+/**
+ * Get a single photo by id
+ * @param id - Photo id
+ * @returns enriched photo object
+ */
 const getPhoto = async (id) => {
   // fetch
   const photo = await fetchPhoto(id);
@@ -29,8 +33,14 @@ const getPhoto = async (id) => {
   };
 };
 
-/** Get photo collection with optional filters */
-const getPhotos = async (title, albumTitle, email) => {
+/**
+ * Get photo collection with optional filters
+ * @param .title - Photo title 'contains' filter (case insensitive)
+ * @param .albumTitle - Album title 'contains' filter (case insensitive)
+ * @param .email - User's email 'strict' filter (case insensitive)
+ * @returns collection of enriched photo objects
+ */
+const getPhotos = async ({ title, albumTitle, email } = {}) => {
   // fetch
   const [photos, users, albums] = await Promise.all([
     fetchPhotos(),

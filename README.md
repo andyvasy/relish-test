@@ -16,6 +16,7 @@ Highlights:
 - [x] Caching
 - [x] Sales pitch generation using OpenAI API
 - [x] Azure build pipeline
+- [x] Jest unit tests for BL class
 
 There are trade-offs given a limited timeframe, see [Side Note](#side-note) section.
 
@@ -108,13 +109,19 @@ Search query string parameters are ignored
 
 ### /externalapi/ai/photo-pitch/{id}
 
-Generates a sales pitch using Photo, Album, and User data.
+Generates a salling pitch using Photo, Album, and User data.
 
-Returns a plain-text string.
+Returns a simple json containing a selling pitch:
+
+```json
+{
+  "text": "Selling pitch text"
+}
+```
 
 Using gpt-4 model, titles get translated from Latin to English and being used as a source of sales pitch phrase along with User name, Company name, City, and Catchphrase.
 
-Since images have nothing to categorize, image categorization would be boring to implement. Text is much more fun having not very meaningful input data, for example:
+Since images have nothing to categorize, image categorization would be boring to implement. Text is much more fun, having not very meaningful input data, for example:
 
 _Discover Leanne Graham's masterpiece artwork, "It is reprehensible to leave cowardice", a shining jewel in her innovative album, "Indeed, the Nuisance Exists." This cutting-edge art piece from Gwenborough blends sophisticated multi-layered neural-net illustrations with profound traces of the undefined. It is fascinating how Graham has captured the undefinable essence within each layer, challenging and bewitching the visual senses. Romaguera-Crona is proud to provide this high-profile art piece. Here's your golden opportunity to own Graham's genius. Embrace the nuance, live the courage it demands, and let "It is reprehensible to leave cowardice" be the centerpiece of your collection._
 
@@ -212,3 +219,7 @@ It would be great to have OpenAPI / Swagger document or at least Postman or Inso
 ### Client error handling
 
 The client does not display HTTP errors
+
+### Test Coverage
+
+Due to time constraints only the main business logic is covered by unit tests
